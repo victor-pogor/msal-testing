@@ -6,7 +6,8 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "pflannery.vscode-versionlens"
+                "pflannery.vscode-versionlens",
+                "esbenp.prettier-vscode"
             ]
         }
     }
