@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "pflannery.vscode-versionlens",
+    "esbenp.prettier-vscode",
+    "vitest.explorer"
+  ]
+}
