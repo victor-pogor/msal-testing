@@ -1,19 +1,17 @@
 import { useProfileInfo } from './hooks/use-profile-info';
 
 export const ProfileInfo = () => {
-  const { account, graphData } = useProfileInfo();
+  const { userData, profilePhoto } = useProfileInfo();
 
   return (
     <div>
       <h5>Profile Information</h5>
-      {account ? (
+      {profilePhoto ? <img src={profilePhoto} alt={userData?.displayName ?? 'User Photo'} /> : null}
+      {userData ? (
         <div>
-          <p>Name: {account.name}</p>
-          <p>Username: {account.username}</p>
-          <p>Account ID: {account.localAccountId}</p>
-          <p>First Name: {`${account.idTokenClaims?.given_name ?? 'N/A'}`}</p>
-          <p>Last Name: {`${account.idTokenClaims?.family_name ?? 'N/A'}`}</p>
-          <p>DisplayName (from Graph API call): {graphData?.displayName ?? 'N/A'}</p>
+          <p>Name: {userData.displayName}</p>
+          <p>First Name: {userData.givenName}</p>
+          <p>Last Name: {userData.surname}</p>
         </div>
       ) : null}
     </div>
