@@ -3,8 +3,8 @@ import { useMsal } from '@azure/msal-react';
 import { useEffect, useState } from 'react';
 import { User } from '@microsoft/microsoft-graph-types';
 import { AuthCodeMSALBrowserAuthenticationProvider } from '@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser';
-import { getUser, getUserPhoto } from '@/services/graph';
-import { loginRequest } from '@/authConfig';
+import { getUser, getUserPhoto } from '@/services/graph-api.service';
+import { loginRequest } from '@/services/auth-config.service';
 
 export const useProfileInfo = () => {
   const { instance } = useMsal();
@@ -37,5 +37,5 @@ export const useProfileInfo = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  return { userData, profilePhoto } as const;
+  return { userData, profilePhoto, account } as const;
 };

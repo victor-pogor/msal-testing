@@ -1,7 +1,8 @@
 import { render, screen, waitFor } from '@tests/utils/test-utils';
-import { App } from './App';
+import { App } from './app.component';
 import { PublicClientApplication } from '@azure/msal-browser';
-import { mockMsalConfig, silentRequest, serverResponse, loadTokenOptions } from '@tests/mocks/mockAuthConfig';
+import { mockMsalConfig } from '@tests/mocks/mock-auth.config';
+import { silentRequest, serverResponse, loadTokenOptions } from '@tests/utils/mock-auth.service';
 
 describe('Ensure that the app starts', () => {
   let pca: PublicClientApplication;
@@ -10,7 +11,7 @@ describe('Ensure that the app starts', () => {
   beforeEach(() => {
     pca = new PublicClientApplication(mockMsalConfig);
     const cache = pca.getTokenCache();
-    cache.loadExternalTokens(silentRequest, serverResponse, loadTokenOptions);
+    cache.loadExternalTokens(silentRequest(), serverResponse(), loadTokenOptions);
     handleRedirectSpy = vi.spyOn(pca, 'handleRedirectPromise');
   });
 

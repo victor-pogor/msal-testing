@@ -2,9 +2,9 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { MsalAuthenticationTemplate, MsalAuthenticationResult, MsalProvider } from '@azure/msal-react';
-import { loginRequest } from './authConfig';
+import { loginRequest } from './services/auth-config.service';
 import { useState } from 'react';
-import { ProfileInfo } from './ProfileInfo';
+import { ProfileInfoFromGraphApi } from './profile/profile-info-from-graph-api.component';
 
 export const App = ({ instance }: Props) => {
   const [count, setCount] = useState(0);
@@ -17,7 +17,7 @@ export const App = ({ instance }: Props) => {
         errorComponent={ErrorComponent}
         loadingComponent={LoadingComponent}
       >
-        <ProfileInfo />
+        <ProfileInfoFromGraphApi />
         <div>
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className="logo" alt="Vite logo" />

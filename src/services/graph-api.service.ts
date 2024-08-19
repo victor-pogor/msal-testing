@@ -4,15 +4,11 @@ import { User } from '@microsoft/microsoft-graph-types';
 
 let graphClient: Client | undefined = undefined;
 
-function ensureClient(authProvider: AuthCodeMSALBrowserAuthenticationProvider) {
-  if (!graphClient) {
-    graphClient = Client.initWithMiddleware({
-      authProvider: authProvider,
-    });
-  }
-
-  return graphClient;
-}
+const ensureClient = (authProvider: AuthCodeMSALBrowserAuthenticationProvider) => {
+  return (graphClient ??= Client.initWithMiddleware({
+    authProvider: authProvider,
+  }));
+};
 
 export async function getUser(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<User> {
   ensureClient(authProvider);

@@ -3,9 +3,6 @@ import { Configuration, LogLevel } from '@azure/msal-browser';
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const tenantId = import.meta.env.VITE_TENANT_ID;
 
-console.log(clientId);
-console.log(tenantId);
-
 /**
  * Configuration object to be passed to MSAL instance on creation.
  * For a full list of MSAL.js configuration parameters, visit:
@@ -32,12 +29,6 @@ export const msalConfig: Configuration = {
         switch (level) {
           case LogLevel.Error:
             console.error(message);
-            return;
-          case LogLevel.Info:
-            console.info(message);
-            return;
-          case LogLevel.Verbose:
-            console.debug(message);
             return;
           case LogLevel.Warning:
             console.warn(message);

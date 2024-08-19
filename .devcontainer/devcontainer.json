@@ -3,6 +3,7 @@
 {
     "name": "msal-testing",
     "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+    "containerUser": "node",
     "customizations": {
         "vscode": {
             "extensions": [
