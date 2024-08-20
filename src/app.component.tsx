@@ -4,7 +4,7 @@ import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { MsalAuthenticationTemplate, MsalAuthenticationResult, MsalProvider } from '@azure/msal-react';
 import { loginRequest } from './services/auth-config.service';
 import { useState } from 'react';
-import { ProfileInfoFromGraphApi } from './profile/profile-info-from-graph-api.component';
+import { ProfileInfoFromJwtClaims } from './profile/profile-info-from-jwt-claims.component';
 
 export const App = ({ instance }: Props) => {
   const [count, setCount] = useState(0);
@@ -17,7 +17,7 @@ export const App = ({ instance }: Props) => {
         errorComponent={ErrorComponent}
         loadingComponent={LoadingComponent}
       >
-        <ProfileInfoFromGraphApi />
+        <ProfileInfoFromJwtClaims />
         <div>
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className="logo" alt="Vite logo" />
