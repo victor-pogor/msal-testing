@@ -7,17 +7,14 @@ import { PropsWithChildren } from 'react';
 export const mockPublicClientApplication = new PublicClientApplication(mockMsalConfig);
 
 function customRender(ui: React.ReactElement, options: Parameters<typeof render>[1] = {}) {
-  return render(ui, {
-    wrapper: ({ children }) => <MockAuthentication>{children}</MockAuthentication>,
-    ...options,
-  });
+  return render(ui, { wrapper: MockAuthentication, ...options });
 }
 
 export * from '@testing-library/react';
 export { default as userEvent } from '@testing-library/user-event';
 export { customRender as render };
 
-const MockAuthentication = ({ children }: PropsWithChildren) => {
+export const MockAuthentication = ({ children }: PropsWithChildren) => {
   const activeAccount = mockPublicClientApplication.getActiveAccount();
   const allAccounts = mockPublicClientApplication.getAllAccounts();
 

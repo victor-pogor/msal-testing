@@ -12,7 +12,7 @@ export async function getUser(account: AccountInfo): Promise<User> {
   return getOrCreateClient(account).api(graphConfig.meEndpoint).select(fieldsToSelect).get();
 }
 
-export async function getUserPhoto(account: AccountInfo): Promise<any> {
+export async function getUserPhoto(account: AccountInfo): Promise<Blob> {
   return getOrCreateClient(account).api(graphConfig.mePhotoEndpoint).get();
 }
 

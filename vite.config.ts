@@ -17,5 +17,8 @@ export default defineConfig({
     environment: 'happy-dom',
     setupFiles: ['./tests/setupTests.ts'],
     pool: 'forks',
+    coverage: {
+      enabled: true,
+    },
   },
 });

@@ -6,8 +6,8 @@ import { getUser, getUserPhoto } from '@/services/graph-api.service';
 export const useProfileInfo = () => {
   const { instance } = useMsal();
   const account = instance.getActiveAccount();
-  const [userData, setUserData] = useState<User | undefined>();
-  const [profilePhoto, setProfilePhoto] = useState<string | undefined>();
+  const [userData, setUserData] = useState<User | null>(null);
+  const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
 
   useEffect(() => {
     if (!account) {
@@ -20,13 +20,20 @@ export const useProfileInfo = () => {
 
     getUserPhoto(account)
       .then(async (response) => {
-        const photoArrayBuffer = await response.arrayBuffer();
-        const blob = new Blob([photoArrayBuffer], { type: 'image/jpeg' });
         const url = window.URL || window.webkitURL;
-        setProfilePhoto(url.createObjectURL(blob));
+        setProfilePhoto(url.createObjectURL(response));
       })
       .catch((error) => console.log(error));
+
+    return () => {
+      if (profilePhoto) {
+        URL.revokeObjectURL(profilePhoto);
+      }
+
+      setUserData(null);
+      setProfilePhoto(null);
+    };
   }, []);
 
-  return { userData, profilePhoto, account } as const;
+  return { userData, profilePhoto } as const;
 };
