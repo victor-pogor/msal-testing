@@ -1,6 +1,7 @@
-import { mockPublicClientApplication, render, waitFor } from '@tests/utils/test-utils';
+import { render, waitFor } from '@tests/utils/test-utils';
 import { ProfileInfoFromJwtClaims } from './profile-info-from-jwt-claims.component';
 import { silentRequest, serverResponse, loadTokenOptions } from '@tests/utils/mock-auth.service';
+import { mockPublicClientApplication } from '@tests/mocks/mock-auth.config';
 
 let handleRedirectSpy: any;
 
@@ -24,7 +25,7 @@ it('does not render the UPN if user is not authenticated', async () => {
   cache.loadExternalTokens(silentRequest(), msalResponse, loadTokenOptions);
 
   const { findByTestId } = render(<ProfileInfoFromJwtClaims />);
-  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledOnce());
 
   const upnElement = await findByTestId('upn');
   expect(upnElement).toHaveTextContent(expected);
@@ -40,7 +41,7 @@ it('renders the UPN if it exists in id token claims', async () => {
   cache.loadExternalTokens(silentRequest(), msalResponse, loadTokenOptions);
 
   const { findByTestId } = render(<ProfileInfoFromJwtClaims />);
-  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledOnce());
 
   const upnElement = await findByTestId('upn');
   expect(upnElement).toHaveTextContent(expected);
@@ -62,7 +63,7 @@ it('does not render the first name if it does not exist in id token claims', asy
   cache.loadExternalTokens(silentRequest(), msalResponse, loadTokenOptions);
 
   const { findByTestId } = render(<ProfileInfoFromJwtClaims />);
-  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledOnce());
 
   const firstNameElement = await findByTestId('first-name');
   expect(firstNameElement).toHaveTextContent(expected);
@@ -78,7 +79,7 @@ it('renders the first name if it exists in id token claims', async () => {
   cache.loadExternalTokens(silentRequest(), msalResponse, loadTokenOptions);
 
   const { findByTestId } = render(<ProfileInfoFromJwtClaims />);
-  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledOnce());
 
   const firstNameElement = await findByTestId('first-name');
   expect(firstNameElement).toHaveTextContent(expected);
@@ -100,7 +101,7 @@ it('does not render the last name if it does not exist in id token claims', asyn
   cache.loadExternalTokens(silentRequest(), msalResponse, loadTokenOptions);
 
   const { findByTestId } = render(<ProfileInfoFromJwtClaims />);
-  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledOnce());
 
   const lastNameElement = await findByTestId('last-name');
   expect(lastNameElement).toHaveTextContent(expected);

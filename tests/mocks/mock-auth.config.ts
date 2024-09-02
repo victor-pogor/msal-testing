@@ -1,4 +1,4 @@
-import { AccountInfo, Configuration, JsonWebTokenTypes } from '@azure/msal-browser';
+import { AccountInfo, Configuration, JsonWebTokenTypes, PublicClientApplication } from '@azure/msal-browser';
 import { ClientInfo, JoseHeader } from '@azure/msal-common';
 
 export const mockTenantId = 'a07d97f2-f8e8-47d7-bb8a-58b1c19d1f5f'; // Random GUID
@@ -16,6 +16,8 @@ export const mockMsalConfig: Configuration = {
     storeAuthStateInCookie: false,
   },
 };
+
+export const mockPublicClientApplication = new PublicClientApplication(mockMsalConfig);
 
 export const jwtHeader: JoseHeader = {
   typ: JsonWebTokenTypes.Jwt,

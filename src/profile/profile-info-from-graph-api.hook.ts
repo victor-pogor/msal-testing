@@ -33,7 +33,7 @@ export const useProfileInfo = () => {
       setUserData(null);
       setProfilePhoto(null);
     };
-  }, []);
+  }, [account]);
 
   return { userData, profilePhoto } as const;
 };
