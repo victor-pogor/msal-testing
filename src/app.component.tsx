@@ -5,7 +5,6 @@ import { MsalAuthenticationTemplate, MsalAuthenticationResult, MsalProvider } fr
 import { loginRequest } from './services/msal-config.service';
 import { useState } from 'react';
 import { ProfileInfoFromJwtClaims } from './profile/profile-info-from-jwt-claims.component';
-import { ProfileInfoFromGraphApi } from './profile/profile-info-from-graph-api.component';
 
 export const App = ({ instance }: Props) => {
   const [count, setCount] = useState(0);
@@ -19,7 +18,6 @@ export const App = ({ instance }: Props) => {
         loadingComponent={LoadingComponent}
       >
         <ProfileInfoFromJwtClaims />
-        <ProfileInfoFromGraphApi />
         <div>
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -42,7 +40,14 @@ export const App = ({ instance }: Props) => {
 };
 
 const ErrorComponent = ({ error }: MsalAuthenticationResult) => {
-  return <p>An Error Occurred: {error?.message}</p>;
+  return (
+    <div>
+      <p>Oops! An error occured.</p>
+      <p>Name: {error?.name}</p>
+      <p>Message: {error?.message}</p>
+      <p>Message: {error?.stack}</p>
+    </div>
+  );
 };
 
 const LoadingComponent = () => {

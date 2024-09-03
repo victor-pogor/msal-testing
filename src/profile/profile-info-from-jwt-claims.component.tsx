@@ -1,5 +1,5 @@
 import { useMsal } from '@azure/msal-react';
-import { ConditionalRender } from '../conditional-render.component';
+import { ConditionalRender } from '../components/conditional-render.component';
 
 export const ProfileInfoFromJwtClaims = () => {
   const { instance } = useMsal();

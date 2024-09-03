@@ -15,6 +15,15 @@ export const mockMsalConfig: Configuration = {
     cacheLocation: 'sessionStorage',
     storeAuthStateInCookie: false,
   },
+  system: {
+    loggerOptions: {
+      loggerCallback: (level, message) => {
+        console.log(`${level}: ${message}`);
+      },
+      logLevel: 0,
+      piiLoggingEnabled: false,
+    },
+  },
 };
 
 export const mockPublicClientApplication = new PublicClientApplication(mockMsalConfig);

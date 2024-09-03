@@ -1,6 +1,6 @@
 import { MsalProvider } from '@azure/msal-react';
 import { mockPublicClientApplication } from '../mocks/mock-auth.config';
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren } from 'react';
 
 export const MockAuthentication = ({ children }: PropsWithChildren) => {
   const activeAccount = mockPublicClientApplication.getActiveAccount();
@@ -10,17 +10,5 @@ export const MockAuthentication = ({ children }: PropsWithChildren) => {
     mockPublicClientApplication.setActiveAccount(allAccounts[0]);
   }
 
-  return (
-    <MsalProvider instance={mockPublicClientApplication}>
-      <MsalProviderWrapper>{children}</MsalProviderWrapper>
-    </MsalProvider>
-  );
-};
-
-const MsalProviderWrapper = ({ children }: PropsWithChildren) => {
-  useEffect(() => {
-    console.log('MockAuthentication useEffect');
-  }, []);
-
-  return children;
+  return <MsalProvider instance={mockPublicClientApplication}>{children}</MsalProvider>;
 };

@@ -21,8 +21,8 @@ describe('Ensure that the app starts', () => {
   });
 
   it('should render the app without crashing', async () => {
-    render(<App instance={pca} />);
-    await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledTimes(1));
+    render(<App instance={pca} />, { wrapper: ({ children }) => children });
+    await waitFor(() => expect(handleRedirectSpy).toHaveBeenCalledOnce());
     const text = await screen.findByText('Click on the Vite and React logos to learn more');
     expect(text).toBeInTheDocument();
   });
